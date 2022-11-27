@@ -53,7 +53,7 @@ async function run(){
         //     res.send(result);
         // })
 
-        app.get('/categories/:id', async(req, res)=>{
+        app.get('/category/:id', async(req, res)=>{
             const CategoryName = req.params.id;
             const query = {CategoryName:CategoryName};
             const cursor = await productsCollection.find(query);

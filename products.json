@@ -1,0 +1,88 @@
+
+  
+[
+  {
+    "productName": "valo gas chula",
+    "CategoryName": "Gas Stoves",
+    "picture": "https://5.imimg.com/data5/LE/VG/MY-1254570/four-burner-glass-top-gas-stoves-su-4b-451-ss-model-500x500.jpg",
+    "originalPrice": 372,
+    "resalePrice": 147,
+    "UsesTime": 9,
+    "postingDate": "2017-10-01T07:10:57 -06:00",
+    "sellerName": "Rosalie Munoz",
+    "Location": "939 Anna Court, Santel, New Hampshire,         4901",
+    "isVarified": true
+  },
+  {
+    "productName": "carent er chula",
+    "CategoryName": "Electric Stoves",
+    "picture": "https://media.istockphoto.com/id/501706822/photo/pot-in-modern-kitchen-with-induction-stove.jpg?s=612x612&w=0&k=20&c=2e6M3uEPvfARcGNFyxuWXQxFsCu3P1KrVLfG3QpyKPs=",
+    "originalPrice": 22,
+    "resalePrice": 194,
+    "UsesTime": 0,
+    "postingDate": "2019-02-02T11:13:53 -06:00",
+    "sellerName": "Robin Tyson",
+    "Location": "153 River Street, Wikieup, Vermont,         9424",
+    "isVarified": true
+  },
+  {
+    "productName": "smart chula",
+    "CategoryName": "Induction Stoves",
+    "picture": "https://media.istockphoto.com/id/873065548/photo/built-in-stove-on-a-kithcen-counter.jpg?s=612x612&w=0&k=20&c=BsQnYKrSyZ57jFIN4ympdwxYNl2kCmftlsPfmKPm5QE=",
+    "originalPrice": 262,
+    "resalePrice": 93,
+    "UsesTime": 3,
+    "postingDate": "2016-10-13T12:53:02 -06:00",
+    "sellerName": "Johnston Burton",
+    "Location": "825 Hale Avenue, Hoagland, American Samoa,         3300",
+    "isVarified": true
+  },
+  {
+    "productName": "induction oven",
+    "CategoryName": "Induction Stoves",
+    "picture": "http://placehold.it/32x32",
+    "originalPrice": 447,
+    "resalePrice": 219,
+    "UsesTime": 5,
+    "postingDate": "2021-08-27T11:58:14 -06:00",
+    "sellerName": "Rivers Simmons",
+    "Location": "632 Autumn Avenue, Crayne, West Virginia,         9883",
+    "isVarified": false
+  },
+  {
+    "productName": "RFL gas stove",
+    "CategoryName": "Gas Stoves",
+    "picture": "http://placehold.it/32x32",
+    "originalPrice": 51,
+    "resalePrice": 191,
+    "UsesTime": 8,
+    "postingDate": "2021-08-10T08:46:31 -06:00",
+    "sellerName": "Callie Doyle",
+    "Location": "764 Howard Alley, Downsville, Delaware,         6223",
+    "isVarified": true
+  },
+  {
+    "productName": "Bidyut sasroi chula",
+    "CategoryName": "Electric Stoves",
+    "picture": "http://placehold.it/32x32",
+    "originalPrice": 211,
+    "resalePrice": 85,
+    "UsesTime": 1,
+    "postingDate": "2019-03-30T07:15:42 -06:00",
+    "sellerName": "Baird Saunders",
+    "Location": "613 Olive Street, Drummond, Massachusetts,         1479",
+    "isVarified": false
+  },
+  {
+    "productName": "Good gas stove",
+    "CategoryName": "Gas Stoves",
+    "picture": "http://placehold.it/32x32",
+    "originalPrice": 23,
+    "resalePrice": 46,
+    "UsesTime": 2,
+    "postingDate": "2018-10-18T11:11:27 -06:00",
+    "sellerName": "Holcomb Johnston",
+    "Location": "583 Vista Place, Bedias, Kentucky,         8830",
+    "isVarified": false
+  }
+]

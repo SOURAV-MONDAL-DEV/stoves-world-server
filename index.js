@@ -32,11 +32,9 @@ async function run(){
     try{
         const categoryCollection = client.db('stoveWorld').collection('categories');
         const productsCollection = client.db('stoveWorld').collection('products');
+        const usersCollection = client.db('stoveWorld').collection('users');
 
 
-        // app.get('/categories', async(req,res) => {
-
-        // })
 
         app.get('/categories', async(req, res) =>{
             const query = {}
@@ -61,6 +59,27 @@ async function run(){
  
             res.send(products);
         })
+
+
+        app.post('/users', async(req, res) => {
+            const user = req.body;
+            const result = await usersCollection.insertOne(user);
+            res.send(result);
+        })
+
+
+
+        app.get('/users/:id', async(req, res)=>{
+            const email = req.params.id;
+            const query = {email:email};
+            const cursor = await usersCollection.find(query);
+            const user = await cursor.toArray();
+ 
+            res.send(user);
+        })
+
+
+        
 
 
 

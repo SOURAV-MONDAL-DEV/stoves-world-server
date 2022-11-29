@@ -11,18 +11,6 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// console.log(process.env.DB_USER);
-// console.log(process.env.DB_PASSWORD);
-
-
-// const uri = "mongodb+srv://<username>:<password>@cluster0.ihuwgkj.mongodb.net/?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
-
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ihuwgkj.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -79,7 +67,24 @@ async function run(){
         })
 
 
-        
+        // ekhan theke dekhbo post put---------------
+
+
+        // app.post('/usersput/:id', async(req, res)=>{
+        //     const email = req.params.id;
+        //     const query = {email:email};
+        //     const update = req.body;
+        //     console.log(email,update);
+        //     const options = { upsert: true };
+        //     const cursor = await usersCollection.updateOne(query,update,options);
+        //     const user = await cursor.toArray();
+ 
+        //     res.send(user);
+        // })
+
+
+        // ekhan theke dekhbo post put---------------
+
 
 
 

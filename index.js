@@ -93,11 +93,6 @@ async function run(){
         })
 
 
-        // ekhan theke dekhbo post put---------------
-
-
-
-
         // app.get('/product', async(req, res)=>{
         //     const CategoryName = req.params.id;
         //     let query = {};

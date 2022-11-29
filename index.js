@@ -70,17 +70,27 @@ async function run(){
         // ekhan theke dekhbo post put---------------
 
 
-        // app.post('/usersput/:id', async(req, res)=>{
-        //     const email = req.params.id;
-        //     const query = {email:email};
-        //     const update = req.body;
-        //     console.log(email,update);
-        //     const options = { upsert: true };
-        //     const cursor = await usersCollection.updateOne(query,update,options);
-        //     const user = await cursor.toArray();
+        app.put('/users/:id', async(req, res)=>{
+            const email = req.params.id;
+            const query = {email:email};
+            const user = req.body;
+            const options = { upsert: true };
+            const updatedUser = {
+                $set:{
+                    name : user.name,
+                    email: user.email,
+                    userRole: user.userRole
+                }
+            }
+
+            if(user.email){
+                const result = await usersCollection.updateOne(query,updatedUser,options);
  
-        //     res.send(user);
-        // })
+            res.send(result);
+            }
+
+            
+        })
 
 
         // ekhan theke dekhbo post put---------------

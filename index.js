@@ -39,6 +39,10 @@ async function run(){
         //     res.send(result);
         // })
 
+
+
+        // Loading Product by category--------------
+
         app.get('/category/:id', async(req, res)=>{
             const CategoryName = req.params.id;
             const query = {category:CategoryName};
@@ -46,6 +50,16 @@ async function run(){
             const products = await cursor.toArray();
  
             res.send(products);
+        })
+
+        app.get('/products/:id', async(req, res)=>{
+            const email = req.params.id;
+            const query = {email:email};
+            console.log(email);
+            const cursor = await productsCollection.find(query);
+            const user = await cursor.toArray();
+ 
+            res.send(user);
         })
 
 

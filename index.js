@@ -41,7 +41,7 @@ async function run(){
 
         app.get('/category/:id', async(req, res)=>{
             const CategoryName = req.params.id;
-            const query = {CategoryName:CategoryName};
+            const query = {category:CategoryName};
             const cursor = await productsCollection.find(query);
             const products = await cursor.toArray();
  
@@ -67,9 +67,6 @@ async function run(){
         })
 
 
-        // ekhan theke dekhbo post put---------------
-
-
         app.put('/users/:id', async(req, res)=>{
             const email = req.params.id;
             const query = {email:email};
@@ -82,14 +79,19 @@ async function run(){
                     userRole: user.userRole
                 }
             }
-
             if(user.email){
                 const result = await usersCollection.updateOne(query,updatedUser,options);
- 
             res.send(result);
             }
-
             
+        })
+
+
+        app.post('/product', async(req, res) => {
+            const product = req.body;
+            console.log(product);
+            const result = await productsCollection.insertOne(product);
+            res.send(result);
         })
 
 

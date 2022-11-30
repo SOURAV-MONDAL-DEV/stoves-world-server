@@ -21,6 +21,7 @@ async function run(){
         const categoryCollection = client.db('stoveWorld').collection('categories');
         const productsCollection = client.db('stoveWorld').collection('products');
         const usersCollection = client.db('stoveWorld').collection('users');
+        const ordersCollection = client.db('stoveWorld').collection('orders');
 
 
 
@@ -108,6 +109,32 @@ async function run(){
             res.send(result);
         })
 
+
+        app.put('/orders', async(req, res) => {
+            const orders = req.body;
+            const query = {buyerEmail:orders.buyerEmail, productId:orders.productId}
+            const options = { upsert: true };
+            const updatedOrders = {
+                $set:{
+                    buyerEmail:orders.buyerEmail,
+                    productId:orders.productId
+                }
+            }
+            const result = await ordersCollection.updateOne(query,updatedOrders,options);
+            res.send(result);
+            
+        })
+
+
+        // ---------------------------------
+
+        // app.post('/orders', async(req, res) => {
+        //     const orders = req.body;
+        //     console.log(orders);
+        //     const result = await ordersCollection.insertOne(orders);
+        //     res.send(result);
+        // })
+        // --------------------------------------
 
         // app.get('/product', async(req, res)=>{
         //     const CategoryName = req.params.id;

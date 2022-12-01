@@ -134,12 +134,13 @@ async function run() {
 
         // ---------------------------------
 
-        // app.post('/orders', async(req, res) => {
-        //     const orders = req.body;
-        //     console.log(orders);
-        //     const result = await ordersCollection.insertOne(orders);
-        //     res.send(result);
-        // })
+        app.get('/orders/:id', async(req, res) => {
+            const email = req.params.id;
+            const query = {buyerEmail: email };
+            const cursor = await ordersCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        })
         // --------------------------------------
 
         // app.get('/product', async(req, res)=>{

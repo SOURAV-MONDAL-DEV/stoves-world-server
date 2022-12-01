@@ -15,9 +15,9 @@ app.use(express.json());
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ihuwgkj.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-async function run(){
+async function run() {
 
-    try{
+    try {
         const categoryCollection = client.db('stoveWorld').collection('categories');
         const productsCollection = client.db('stoveWorld').collection('products');
         const usersCollection = client.db('stoveWorld').collection('users');
@@ -25,7 +25,7 @@ async function run(){
 
 
 
-        app.get('/categories', async(req, res) =>{
+        app.get('/categories', async (req, res) => {
             const query = {}
             const cursor = categoryCollection.find(query);
             const categories = await cursor.toArray();
@@ -44,27 +44,27 @@ async function run(){
 
         // Loading Product by category--------------
 
-        app.get('/category/:id', async(req, res)=>{
+        app.get('/category/:id', async (req, res) => {
             const CategoryName = req.params.id;
-            const query = {category:CategoryName};
+            const query = { category: CategoryName };
             const cursor = await productsCollection.find(query);
             const products = await cursor.toArray();
- 
+
             res.send(products);
         })
 
-        app.get('/products/:id', async(req, res)=>{
+        app.get('/products/:id', async (req, res) => {
             const email = req.params.id;
-            const query = {email:email};
+            const query = { email: email };
             console.log(email);
             const cursor = await productsCollection.find(query);
             const user = await cursor.toArray();
- 
+
             res.send(user);
         })
 
 
-        app.post('/users', async(req, res) => {
+        app.post('/users', async (req, res) => {
             const user = req.body;
             const result = await usersCollection.insertOne(user);
             res.send(result);
@@ -72,37 +72,37 @@ async function run(){
 
 
 
-        app.get('/users/:id', async(req, res)=>{
+        app.get('/users/:id', async (req, res) => {
             const email = req.params.id;
-            const query = {email:email};
+            const query = { email: email };
             const cursor = await usersCollection.find(query);
             const user = await cursor.toArray();
- 
+
             res.send(user);
         })
 
 
-        app.put('/users/:id', async(req, res)=>{
+        app.put('/users/:id', async (req, res) => {
             const email = req.params.id;
-            const query = {email:email};
+            const query = { email: email };
             const user = req.body;
             const options = { upsert: true };
             const updatedUser = {
-                $set:{
-                    name : user.name,
+                $set: {
+                    name: user.name,
                     email: user.email,
                     userRole: user.userRole
                 }
             }
-            if(user.email){
-                const result = await usersCollection.updateOne(query,updatedUser,options);
-            res.send(result);
+            if (user.email) {
+                const result = await usersCollection.updateOne(query, updatedUser, options);
+                res.send(result);
             }
-            
+
         })
 
 
-        app.post('/product', async(req, res) => {
+        app.post('/product', async (req, res) => {
             const product = req.body;
             console.log(product);
             const result = await productsCollection.insertOne(product);
@@ -110,19 +110,25 @@ async function run(){
         })
 
 
-        app.put('/orders', async(req, res) => {
+        app.put('/orders', async (req, res) => {
             const orders = req.body;
-            const query = {buyerEmail:orders.buyerEmail, productId:orders.productId}
+            const query = { buyerEmail: orders.buyerEmail, productId: orders.productId }
             const options = { upsert: true };
             const updatedOrders = {
-                $set:{
-                    buyerEmail:orders.buyerEmail,
-                    productId:orders.productId
+                $set: {
+                    buyerEmail: orders.buyerEmail,
+                    productId: orders.productId,
+                    productName: orders.productName,
+                    picture: orders.picture,
+                    resalePrice: orders.resalePrice,
+                    sellerName: orders.sellerName,
+                    location: orders.location,
+                    sellerEmail: orders.sellerEmail
                 }
             }
-            const result = await ordersCollection.updateOne(query,updatedOrders,options);
+            const result = await ordersCollection.updateOne(query, updatedOrders, options);
             res.send(result);
-            
+
         })
 
 
@@ -177,10 +183,10 @@ async function run(){
         //     res.send(result);
         // })
 
-        
+
 
     }
-    finally{
+    finally {
 
     }
 
@@ -190,11 +196,11 @@ run().catch(err => console.err(err));
 
 
 
-app.get('/', (req, res)  =>{
+app.get('/', (req, res) => {
     res.send('stove server is running')
 })
 
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`stove server running on ${port}`);
 })

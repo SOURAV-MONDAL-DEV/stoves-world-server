@@ -33,13 +33,6 @@ async function run() {
 
         })
 
-        // app.post('/services', async(req, res) => {
-        //     const service = req.body;
-        //     console.log(service);
-        //     const result = await serviceCollection.insertOne(service);
-        //     res.send(result);
-        // })
-
 
 
         // Loading Product by category--------------
@@ -63,11 +56,14 @@ async function run() {
         })
 
 
-        app.post('/users', async (req, res) => {
-            const user = req.body;
-            const result = await usersCollection.insertOne(user);
-            res.send(result);
+        app.get('/usersRole/:id', async (req, res) => {
+            const userRole = req.params.id;
+            const query = {userRole:userRole}
+            const cursor = usersCollection.find(query);
+            const users = await cursor.toArray();
+            res.send(users);
         })
+
 
 
 
@@ -80,6 +76,17 @@ async function run() {
             res.send(user);
         })
 
+        
+
+
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+            const result = await usersCollection.insertOne(user);
+            res.send(result);
+        })
+
+
+       
 
         app.put('/users/:id', async (req, res) => {
             const email = req.params.id;
@@ -98,6 +105,13 @@ async function run() {
                 res.send(result);
             }
 
+        })
+
+        app.delete('/users/:id', async (req, res) => {
+            const email = req.params.id;
+            const query = { email: email };
+            const result = await usersCollection.deleteOne(query);
+            res.send(result);
         })
 
 

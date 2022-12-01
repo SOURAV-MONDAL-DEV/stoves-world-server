@@ -56,7 +56,6 @@ async function run() {
         app.get('/products/:id', async (req, res) => {
             const email = req.params.id;
             const query = { email: email };
-            console.log(email);
             const cursor = await productsCollection.find(query);
             const user = await cursor.toArray();
 
@@ -104,7 +103,6 @@ async function run() {
 
         app.post('/product', async (req, res) => {
             const product = req.body;
-            console.log(product);
             const result = await productsCollection.insertOne(product);
             res.send(result);
         })
@@ -121,9 +119,12 @@ async function run() {
                     productName: orders.productName,
                     picture: orders.picture,
                     resalePrice: orders.resalePrice,
+                    originalPrice: orders.originalPrice,
                     sellerName: orders.sellerName,
                     location: orders.location,
-                    sellerEmail: orders.sellerEmail
+                    sellerEmail: orders.sellerEmail,
+                    sellerPhone: orders.sellerPhone,
+                    condition: orders.condition
                 }
             }
             const result = await ordersCollection.updateOne(query, updatedOrders, options);

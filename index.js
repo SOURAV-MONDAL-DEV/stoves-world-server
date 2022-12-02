@@ -46,6 +46,17 @@ async function run() {
             res.send(products);
         })
 
+
+        // Loading Product by Advertise--------------
+
+        app.get('/productsAdvertise/:id', async (req, res) => {
+            const isAdvertised = req.params.id;
+            const query = { isAdvertised: true};
+            const cursor = await productsCollection.find(query);
+            const products = await cursor.toArray();
+            res.send(products);
+        })
+
         app.get('/products/:id', async (req, res) => {
             const email = req.params.id;
             const query = { email: email };
@@ -85,14 +96,14 @@ async function run() {
             const status = req.body;
             console.log(query, status);
 
-            // const options = { upsert: true };
-            // const updatedUser = {
-            //     $set: {
-            //         isAdvertise: status.isAdvertise,
-            //     }
-            // }
-            //     const result = await productsCollection.updateOne(query, updatedUser, options);
-            //     res.send(result); 
+            const options = { upsert: true };
+            const updatedUser = {
+                $set: {
+                    isAdvertised: status.isAdvertised,
+                }
+            }
+                const result = await productsCollection.updateOne(query, updatedUser, options);
+                res.send(result); 
 
         })
 

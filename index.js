@@ -145,6 +145,7 @@ async function run() {
             const email = req.params.id;
             const query = { email: email };
             const user = req.body;
+            console.log(user.email);
             const options = { upsert: true };
             const updatedUser = {
                 $set: {
@@ -214,46 +215,7 @@ async function run() {
         })
         // --------------------------------------
 
-        // app.get('/product', async(req, res)=>{
-        //     const CategoryName = req.params.id;
-        //     let query = {};
-        //     if(req.query.CategoryName){
-        //                 query = {
-        //                     CategoryName: req.query.CategoryName
-        //                 }
-        //             }
-        //     const products = await productsCollection.find(query);
-        //     res.send(products);
-        // })
-
-
-
-
-        // app.get('/reviews', async(req, res) =>{
-        //     let query = {};
-        //     if(req.query.service){
-        //         query = {
-        //             service: req.query.service
-        //         }
-        //     }
-        //     else if(req.query.email){
-        //         query = {
-        //             email: req.query.email
-        //         }
-        //     }
-        //     const cursor = reviewCollection.find(query).sort({$natural:-1});
-        //     const reviews = await cursor.toArray();
-        //     res.send(reviews);
-
-        // })
-
-
-
-        // app.post('/reviews', async(req, res) => {
-        //     const review = req.body;
-        //     const result = await reviewCollection.insertOne(review);
-        //     res.send(result);
-        // })
+       
 
 
 

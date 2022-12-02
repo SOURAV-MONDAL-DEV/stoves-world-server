@@ -39,7 +39,7 @@ async function run() {
 
         app.get('/category/:id', async (req, res) => {
             const CategoryName = req.params.id;
-            const query = { category: CategoryName };
+            const query = { category: CategoryName, isSold: false };
             const cursor = await productsCollection.find(query);
             const products = await cursor.toArray();
 
@@ -54,6 +54,48 @@ async function run() {
 
             res.send(user);
         })
+
+
+        // UPDATE SOLD INFORMATION 
+
+        app.put('/productSold/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const status = req.body;
+
+            const options = { upsert: true };
+            const updatedUser = {
+                $set: {
+                    isSold: status.isSold,
+                }
+            }
+                const result = await productsCollection.updateOne(query, updatedUser, options);
+                res.send(result); 
+
+        })
+
+
+        // UPDATE Advertise INFORMATION
+
+
+
+        app.put('/productAdvertise/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const status = req.body;
+            console.log(query, status);
+
+            // const options = { upsert: true };
+            // const updatedUser = {
+            //     $set: {
+            //         isAdvertise: status.isAdvertise,
+            //     }
+            // }
+            //     const result = await productsCollection.updateOne(query, updatedUser, options);
+            //     res.send(result); 
+
+        })
+
 
 
         app.get('/usersRole/:id', async (req, res) => {
@@ -125,6 +167,7 @@ async function run() {
         app.put('/orders', async (req, res) => {
             const orders = req.body;
             const query = { buyerEmail: orders.buyerEmail, productId: orders.productId }
+            console.log(orders);
             const options = { upsert: true };
             const updatedOrders = {
                 $set: {
@@ -138,7 +181,9 @@ async function run() {
                     location: orders.location,
                     sellerEmail: orders.sellerEmail,
                     sellerPhone: orders.sellerPhone,
-                    condition: orders.condition
+                    condition: orders.condition,
+                    buyerLocation: orders.buyerLocation,
+                    buyerPhone: orders.buyerPhone
                 }
             }
             const result = await ordersCollection.updateOne(query, updatedOrders, options);
